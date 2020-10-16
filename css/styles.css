@@ -470,10 +470,16 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
+}
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, 150%);
+  opacity: 0;
 }
 .modal {
   position: absolute;
@@ -482,9 +488,12 @@ body {
   transform: translate(-50%, -50%);
   min-width: 528px;
   min-height: 581px;
+  padding: 20px;
   background-color: var(--primary-bg-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  opacity: 1;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .close-modal {
   position: absolute;
@@ -493,6 +502,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  color: #000000;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: var(--primary-bg-color);
 }
@@ -501,7 +511,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  fill: currentColor;
 }
+.close-modal:hover,
+.close-modal:focus {
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
 /* Портфолио */
 
 .portfolio-button {
@@ -572,9 +589,6 @@ body {
   padding: 63px 24px;
   background-color: rgba(33, 150, 243, 0.9);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  /* transition-property: transform;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
 }
 .portfolio-item:hover .portfolio-image-caption {
   transform: translateY(0);
